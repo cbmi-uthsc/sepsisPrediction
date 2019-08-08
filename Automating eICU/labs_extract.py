@@ -97,6 +97,8 @@ class Lab_filter:
         del pre_final_lab['labresult']
         del pre_final_lab['labname']
 
+        pre_final_lab.to_csv("labs_morevars.csv", sep=',', index=False, encoding='utf-8')
+
 
         #Merge the ventilator details with the lab data for SOFA calculations
         nursevent=pd.read_csv(nursechartVent)

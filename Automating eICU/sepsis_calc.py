@@ -59,5 +59,9 @@ class tsepsis:
         for_24_hr_tsepsis.loc[(for_24_hr_tsepsis['tsofa']>=(for_24_hr_tsepsis['tsus']-(24*60))) & (for_24_hr_tsepsis['tsofa']<=(for_24_hr_tsepsis['tsus']+(12*60))),'flag']=1
         for_24_hr_tsepsis.to_csv("24_hour_sepsis.csv",index=False)
         
+        #This following is to bring out the number of cases and the actual tsepsis, and not just flag them
+        
+        #for_24_hr_cases=for_24_hr_tsepsis[for_24_hr_tsepsis['flag']==1]
+        #for_24_hr_cases['tsepsis']=for_24_hr_cases[['tsus','tsofa']].min(axis=1)
 
         return for_24_hr_tsepsis
