@@ -1,4 +1,4 @@
-<center><h2>Google Summer of Code - CBMI-UTHSC</h2></center>
+#<center><h2>Google Summer of Code - CBMI-UTHSC</h2></center>
 <center><h3>Early Sepsis Prediction using Machine Learning</h3></center>
 <h3>Table of Contents</h3>
 <ol>
