@@ -1,3 +1,6 @@
-# sepsisPrediction
+<center><h2>Google Summer of Code - CBMI-UTHSC</h2></center>
+<center><h3>Early Sepsis Prediction using Machine Learning</h3></center>
 
-This is for predicting sepsis using xgboost model.
+<p>
+In this project, aim to 
+</p>
