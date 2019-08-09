@@ -1,4 +1,4 @@
-#<center><h2>Google Summer of Code - CBMI-UTHSC</h2></center>
+<center><h2>Google Summer of Code - CBMI-UTHSC</h2></center>
 <center><h3>Early Sepsis Prediction using Machine Learning</h3></center>
 <h3>Table of Contents</h3>
 <ol>
@@ -19,3 +19,12 @@ The vitals for the patients were measured every 5 minutes. Such a frequency is i
 In this project, we apply multiple machine learning methods to generate descriptive features that are clinically meaningful and predict the onset of sepsis.
 </p>
 
+<i><b>NOTE: For the database features, please go through the documentation of the eICU database here: https://eicu-crd.mit.edu/about/eicu/</b></i>
+
+<h3>Modules</h3>
+
+<h3>Code Description</h3>
+
+<h3>GSoC Experience</h3>
+
+<h3>Conclusion</h3>
