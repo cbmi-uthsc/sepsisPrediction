@@ -22,7 +22,12 @@ In this project, we apply multiple machine learning methods to generate descript
 <i><b>NOTE: For the database features, please go through the documentation of the eICU database here: https://eicu-crd.mit.edu/about/eicu/</b></i>
 
 <h3>Modules</h3>
-
+<li>
+<ol>Merging Tables</ol>
+<ol>SOFA Calulations</ol>
+<ol>Feature Extraction</ol>
+<ol>Model Development (XGBoost and others)</ol>
+</li>
 <h3>Code Description</h3>
 
 <h3>GSoC Experience</h3>
