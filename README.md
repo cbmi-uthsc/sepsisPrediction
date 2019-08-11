@@ -24,7 +24,7 @@ In this project, we apply multiple machine learning methods to generate descript
 <h3>Modules</h3>
 
 <ol>
-<li>Extracting germane data</li>
+<li><h4>Extracting germane data</h4></li>
 Since there are multiple tables to work with and the SOFA needs to be calculated from multiple sources, we converged all the relevant things to a single table. For reference, the following is the break-up (for debugging purposes):<br>
 
 <ul>
@@ -44,8 +44,8 @@ Since there are multiple tables to work with and the SOFA needs to be calculated
     </ul>
     </li>
 </ul>
-
-<li>SOFA Calulations</li>
+<br>
+<li><h4>SOFA Calulations</h4></li>
 For the SOFA calulation, we first merged all the aforementioned extracted tables. Then we followed the given rubrics to calculated the SOFA-3 scores.
 
 ![sofa calculation table](SOFA_CALC.png)
@@ -78,9 +78,9 @@ Here is a small code snippet of one of the parts of SOFA calculation:
     labs_withO2.loc[(labs_withO2['creatinine'] >5) | (labs_withO2['urinary_creatinine'] <200), 'SOFA_Renal'] = 4
 </pre>
 
-<li>Feature Extraction</li>
+<li><h4>Feature Extraction</h4></li>
 
-<li>Model Development (XGBoost and others)</li>
+<li><h4>Model Development (XGBoost and others)</h4></li>
 
 </ol>
 <h3>Code Description</h3>
