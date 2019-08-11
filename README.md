@@ -24,6 +24,16 @@ In this project, we apply multiple machine learning methods to generate descript
 <h3>Modules</h3>
 <li>
 <ol>Merging Tables</ol>
+Since there are multiple tables to work with and the SOFA needs to be calculated from multiple sources, we converged all the relevant things to a single table. For reference, the following is the break-up (for debugging purposes):<br>
+<pre>
+<ul>
+    <li><b><i>lab.csv</i></b> was used to extract the lab values.</li>
+    <li>nurseCharting.csv was used to extract the GCS scores as well as the MAP and ventilator details.</li>
+    <li>infusionDrug.csv was </li>
+    <li></li>
+</ul>
+</pre>
+
 <ol>SOFA Calulations</ol>
 <ol>Feature Extraction</ol>
 <ol>Model Development (XGBoost and others)</ol>
