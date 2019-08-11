@@ -49,7 +49,6 @@ Since there are multiple tables to work with and the SOFA needs to be calculated
 For the SOFA calulation, we first merged all the aforementioned extracted tables. Then we followed the given rubrics to calculated the SOFA-3 scores.
 
 ![sofa calculation table](SOFA_CALC.png)
-<div style="text-align:center"><img src="SOFA_CALC.png" /></div>
 
 Here is a small code snippet of one of the parts of SOFA calculation:
 
