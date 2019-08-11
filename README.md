@@ -24,14 +24,25 @@ In this project, we apply multiple machine learning methods to generate descript
 <h3>Modules</h3>
 
 <ol>
-<li>Merging Tables</li>
+<li>Extracting germane data</li>
 Since there are multiple tables to work with and the SOFA needs to be calculated from multiple sources, we converged all the relevant things to a single table. For reference, the following is the break-up (for debugging purposes):<br>
 
 <ul>
     <li><b><i>lab.csv</i></b> was used to extract the lab values.</li>
     <li><b><i>nurseCharting.csv</i></b> was used to extract the GCS scores as well as the MAP and ventilator details.</li>
     <li><b><i>infusionDrug.csv</b></i> was used to extract all relevant vasopressors like Norepinephrine, Dopamine etc. </li>
-    <li></li>
+    <li><b><i>vitalPeriodic.csv was were all the vitals for the patients were recorded in a frequency of 5 minutes.</i></b> </li>
+    <li>The IV antibiotics data has been collected from the <b><i>medication.csv</i></b> table for each registered patient, while the fluid samples data was taken from the <b><i>microlab.csv</i></b></li>
+    <li>Apart from the essential parameters needed for SOFA score calculation, we have also included a number of different variables to the final training data to check how they influence the model as will be shown in the feature importance curve. Some of them are:
+    <ul>
+    <li>calcium</li>
+    <li>glucose</li>
+    <li>lactate</li>
+    <li>magnesium</li>
+    <li>Phosphate</li>
+    <li>potassium</li>
+    </ul>
+    </li>
 </ul>
 
 
