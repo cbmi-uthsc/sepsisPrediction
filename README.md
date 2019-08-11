@@ -47,15 +47,17 @@ Since there are multiple tables to work with and the SOFA needs to be calculated
 
 <li>SOFA Calulations</li>
 For the SOFA calulation, we first merged all the aforementioned extracted tables. Then we followed the given rubrics to calculated the SOFA-3 scores.
+
 ![sofa calculation table](SOFA_CALC.png)
 
 Here is a small code snippet of one of the parts of SOFA calculation:
+
 '''
-    labs_withO2.loc[(labs_withO2['platelets_x_1000' ] >=150), 'SOFA_Coagulation'] = 0
-    labs_withO2.loc[(labs_withO2['platelets_x_1000' ] <150), 'SOFA_Coagulation'] = 1
-    labs_withO2.loc[(labs_withO2['platelets_x_1000' ] <100) , 'SOFA_Coagulation'] = 2
-    labs_withO2.loc[(labs_withO2['platelets_x_1000' ] <50), 'SOFA_Coagulation'] = 3
-    labs_withO2.loc[(labs_withO2['platelets_x_1000' ] <20), 'SOFA_Coagulation'] = 4
+    labs_withO2.loc[(labs_withO2['platelets_x_1000'] >=150), 'SOFA_Coagulation'] = 0
+    labs_withO2.loc[(labs_withO2['platelets_x_1000'] <150), 'SOFA_Coagulation'] = 1
+    labs_withO2.loc[(labs_withO2['platelets_x_1000'] <100) , 'SOFA_Coagulation'] = 2
+    labs_withO2.loc[(labs_withO2['platelets_x_1000'] <50), 'SOFA_Coagulation'] = 3
+    labs_withO2.loc[(labs_withO2['platelets_x_1000'] <20), 'SOFA_Coagulation'] = 4
 
     labs_withO2.loc[(labs_withO2['total_bilirubin'] <1.2), 'SOFA_Liver'] = 0
     labs_withO2.loc[(labs_withO2['total_bilirubin'] >=1.2) & (labs_withO2['total_bilirubin'] <=1.9), 'SOFA_Liver'] = 1
@@ -75,6 +77,7 @@ Here is a small code snippet of one of the parts of SOFA calculation:
     labs_withO2.loc[((labs_withO2['creatinine'] >=3.5) & (labs_withO2['creatinine'] <=4.9)) | (labs_withO2['urinary_creatinine'] <200), 'SOFA_Renal'] = 3
     labs_withO2.loc[(labs_withO2['creatinine'] >5) | (labs_withO2['urinary_creatinine'] <200), 'SOFA_Renal'] = 4
 '''
+
 <li>Feature Extraction</li>
 
 <li>Model Development (XGBoost and others)</li>
