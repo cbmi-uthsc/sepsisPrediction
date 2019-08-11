@@ -22,7 +22,7 @@ In this project, we apply multiple machine learning methods to generate descript
 <i><b>NOTE: For the database features, please go through the documentation of the eICU database here: https://eicu-crd.mit.edu/about/eicu/</b></i>
 
 <h3>Modules</h3>
-<li>
+
 <ol>Merging Tables</ol>
 Since there are multiple tables to work with and the SOFA needs to be calculated from multiple sources, we converged all the relevant things to a single table. For reference, the following is the break-up (for debugging purposes):<br>
 <pre>
