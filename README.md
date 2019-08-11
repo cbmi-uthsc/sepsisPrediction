@@ -23,21 +23,22 @@ In this project, we apply multiple machine learning methods to generate descript
 
 <h3>Modules</h3>
 
-<ol>Merging Tables</ol>
+<ol>
+<li>Merging Tables</li>
 Since there are multiple tables to work with and the SOFA needs to be calculated from multiple sources, we converged all the relevant things to a single table. For reference, the following is the break-up (for debugging purposes):<br>
 <pre>
 <ul>
     <li><b><i>lab.csv</i></b> was used to extract the lab values.</li>
-    <li>nurseCharting.csv was used to extract the GCS scores as well as the MAP and ventilator details.</li>
-    <li>infusionDrug.csv was </li>
+    <li><b><i>nurseCharting.csv</i></b> was used to extract the GCS scores as well as the MAP and ventilator details.</li>
+    <li><b><i>infusionDrug.csv</b></i> was used to extract all relevant vasopressors like Norepinephrine, Dopamine etc. </li>
     <li></li>
 </ul>
 </pre>
 
-<ol>SOFA Calulations</ol>
-<ol>Feature Extraction</ol>
-<ol>Model Development (XGBoost and others)</ol>
-</li>
+<li>SOFA Calulations</li>
+<li>Feature Extraction</li>
+<li>Model Development (XGBoost and others)</li>
+</ol>
 <h3>Code Description</h3>
 
 <h3>GSoC Experience</h3>
