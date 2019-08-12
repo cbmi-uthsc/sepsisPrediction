@@ -96,13 +96,13 @@ They are:
 Therefore the net features extracted are 189.
 
 <li><h4>Model Development (XGBoost and others)</h4></li>
-XGBoost machine learning method is an efficient and optimized distributed gradient boosting library [12] and provides a parallel tree boosting that solve many data science problems in a fast and accurate way.The data is first partitioned into the train (80%) and test (20%) datasets. The train set is used for cross-validated models, while the test set was used to perform the model validation.
+XGBoost machine learning method is an efficient and optimized distributed gradient boosting library and provides a parallel tree boosting that solve many data science problems in a fast and accurate way.The data is first partitioned into the train (80%) and test (20%) datasets. The train set is used for cross-validated models, while the test set was used to perform the model validation.
 
 Five-fold cross-validation model was developed using XGBClassifier. The area under the ROC curve (AUROC) is a function of prediction window. The AUROC for the training set was higher than the testing set. The average testing AUROC at 2 hours prior to the sepsis onset was 0.86. However, the AUROC decreases as we move away from the time of sepsis onset. 
 
 ![auroc](auroc.png)
 
-The average testing cross-validated recall and precision for predicting sepsis class are 73%, and 84%, respectively, 2 hours before the sepsis onset. Whereas, the overall F1-Score was 79.5%. The following provides the precision, recall and F1 score for each of the time intervals before the sepsis onset (sepsis-3 definition). 
+The average testing cross-validated recall and precision for predicting sepsis class are 73%, and 84%, respectively, 2 hours before the sepsis onset. Whereas, the overall F1-Score was 79.5%. The following provides the precision, recall and F1 score for each of the time intervals before the sepsis onset. 
 
 ![xgboost-results](xgboost-results.PNG)
 
@@ -110,14 +110,17 @@ Here we compare the XGBoost F1-Score with the other machine learning methods (RF
 
 ![other models](other-models-comparison.PNG)
 
+<b><i>NOTE: All of the model statistics are exclusive to the eICU database. A new database might produce different results, better or worse. Hyper-parameterization will be required.</i></b>
+
 </ol>
 <h3>Code Description</h3>
+<b><i>NOTE: Before using any of the functions listed in this project, make sure the data is formatted according the eICU schema. Only then, will it work as intended.</i></b>
 <ul>
-<li><b>antibiotics.py</b><li>
-<li><b>gcs_extract.py</b><li>
-<li><b>labs_extract.py</b><li>
-<li><b>merge_final_table.py</b><li>
-<li><b>sepsis_calc.py</b><li>
+<li><b>antibiotics.py</b></li>
+<li><b>gcs_extract.py</b></li>
+<li><b>labs_extract.py</b></li>
+<li><b>merge_final_table.py</b></li>
+<li><b>sepsis_calc.py</b></li>
 <li><b>vasopressor_extract.py</b></li>
 </ul>
 <h3>GSoC Experience</h3>
