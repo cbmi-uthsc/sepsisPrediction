@@ -111,6 +111,6 @@ Here we compare the XGBoost F1-Score with the other machine learning methods (RF
 <h3>Code Description</h3>
 
 <h3>GSoC Experience</h3>
-Google Summer of Code gave me a worthy platform to burnish my skills as well as learn new ones. I had never worked with data at such a large scale. As expected, I faced my fair share of difficulties. 
+Google Summer of Code gave me a worthy platform to burnish my skills as well as learn new ones. I had never worked with data at such a large scale. As expected, I faced my fair share of difficulties. Firstly, I had a very hard tie running all the preprocessing code on my local machine. 
 
 <h3>Conclusion</h3>
