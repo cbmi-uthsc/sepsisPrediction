@@ -143,7 +143,7 @@ This project was one of the biggest milestones in my undergrad timeline. I wish 
 			<br>
 			<a href="http://.html">Ronet Swaminathan</a>
 			<br>
-			<a href="mailto:ronet.swaminathan2016@vitstudent.ac.in;">ronet.swaminathan2016@vitstudent.ac.in</a>
+			<a href="mailto:ronet_swaminathan@ymail.com;">ronet.swaminathan2016@vitstudent.ac.in</a>
 			<br>
 			<p>Author</p>
 		</td>
