@@ -79,6 +79,20 @@ Here is a small code snippet of one of the parts of SOFA calculation:
 </pre>
 
 <li><h4>Feature Extraction</h4></li>
+For the feature extraction process, we need to introduce the concept of time windows and time before true onset. Preprocessing is done is such a way that the time window, i.e the amount of data in a time period required to train the model is kept constant at 6 hours. So, we always train the model using 6hrs worth of data. Time before true onset means how early do we want to predict sepsis. This parameter has been varied in steps of 2 hours to get a better understanding of how your accuracy drops off as the time difference increases. For this experiment, we have used time priors of 2, 4, 6 and 8 hours. 
+Then we have preprocessed the entire dataframe according to each of these time differences. So we have processed data for 2 hours before sepsis with 6 hours of training data, 4 hours before with 6 hours of training data and so on so forth.
+After the SOFA calculations are done and our final training table is made with multiple clinical and vital variables, the total number of features are 27. We then extracted 7 statistical features from each of the original 27 features. <br>
+They are:
+<ul>
+<li>Standard Deviation</li>
+<li>Kurtosis</li>
+<li>Skewness</li>
+<li>Mean </li>
+<li>Minimum</li>
+<li>Maximum</li>
+<li>RMS_Difference</li>
+</ul>
+Therefore the net features extracted are 189.
 
 <li><h4>Model Development (XGBoost and others)</h4></li>
 
