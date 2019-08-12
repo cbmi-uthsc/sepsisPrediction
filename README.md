@@ -1,5 +1,6 @@
 <center><h2>Google Summer of Code - CBMI-UTHSC</h2></center>
 <center><h3>Early Sepsis Prediction using Machine Learning</h3></center>
+<center><h3>Collaborators - Ronet Swaminathan, Aditya Singh, Akram Mohammed and Rishikesan Kamaleswaran</h3></center>
 <h3>Table of Contents</h3>
 <ol>
     <li>Introduction</li>
@@ -99,6 +100,8 @@ XGBoost machine learning method is an efficient and optimized distributed gradie
 
 Five-fold cross-validation model was developed using XGBClassifier. The area under the ROC curve (AUROC) is a function of prediction window. The AUROC for the training set was higher than the testing set. The average testing AUROC at 2 hours prior to the sepsis onset was 0.86. However, the AUROC decreases as we move away from the time of sepsis onset. 
 
+![auroc](auroc.png)
+
 The average testing cross-validated recall and precision for predicting sepsis class are 73%, and 84%, respectively, 2 hours before the sepsis onset. Whereas, the overall F1-Score was 79.5%. The following provides the precision, recall and F1 score for each of the time intervals before the sepsis onset (sepsis-3 definition). 
 
 ![xgboost-results](xgboost-results.PNG)
@@ -109,8 +112,19 @@ Here we compare the XGBoost F1-Score with the other machine learning methods (RF
 
 </ol>
 <h3>Code Description</h3>
-
+<ul>
+<li><b>antibiotics.py</b><li>
+<li><b>gcs_extract.py</b><li>
+<li><b>labs_extract.py</b><li>
+<li><b>merge_final_table.py</b><li>
+<li><b>sepsis_calc.py</b><li>
+<li><b>vasopressor_extract.py</b></li>
+</ul>
 <h3>GSoC Experience</h3>
-Google Summer of Code gave me a worthy platform to burnish my skills as well as learn new ones. I had never worked with data at such a large scale. As expected, I faced my fair share of difficulties. Firstly, I had a very hard tie running all the preprocessing code on my local machine. 
+Google Summer of Code gave me a worthy platform to burnish my skills as well as learn new ones. I had never worked with data at such a large scale. As expected, I faced my fair share of difficulties. Firstly, I had a very hard time running all the preprocessing code on my local machine. There was some wastage of time there. But, upon getting access to the UTHSC supercomputer, things started progressing at a much faster pace. I still faced some trouble optimizing all the code. That way, I learnt a lot of vectorization (something I had only implemented in some lab exercises). Also, the relevant data was very scattered throughout the eICU database. Assimilating everything was time consuming, yet the final rsult was even more rewarding. I also had to resolve data insufficiency issues. 
+But my mentors were supportive of all that I did. They constantly provided me with constructive criticism, that helped me shape up my project.  
+Also, GSoC gave me an opportunity to collaborate with international domain experts. Data Science in the healthcare industry has massive amounts of untapped potential and I'm happy that I was able to contribute effectively to their research on Sepsis through this project. 
+As an added bonus, me and my mentors were able to create a research paper on this project. This paper, at the time of writing this readme is under review. The paper has been submitted to the IEEE EMB HIPOCT 2019 conference. (Status will be updated)
 
 <h3>Conclusion</h3>
+This project was one of the biggest milestones in my undergrad timeline. I wish to continue contributing to open-source organization like CBMI-UTHSC in the future as well. This project has given me a new field (i.e. Computational Biology), to ponder upon. This project has also helped me shape up my future plans for a Masters degree.
