@@ -24,7 +24,7 @@ In this project, we apply multiple machine learning methods to generate descript
 <h3>Modules</h3>
 
 <ol>
-<li><h4>Extracting germane data</h4></li>
+<li><h4>Extracting relevant data</h4></li>
 Since there are multiple tables to work with and the SOFA needs to be calculated from multiple sources, we converged all the relevant things to a single table. For reference, the following is the break-up (for debugging purposes):<br>
 
 <ul>
@@ -97,19 +97,20 @@ Therefore the net features extracted are 189.
 <li><h4>Model Development (XGBoost and others)</h4></li>
 XGBoost machine learning method is an efficient and optimized distributed gradient boosting library [12] and provides a parallel tree boosting that solve many data science problems in a fast and accurate way.The data is first partitioned into the train (80%) and test (20%) datasets. The train set is used for cross-validated models, while the test set was used to perform the model validation.
 
-Five-fold cross-validation model was developed using XGBClassifier. The area under the ROC curve (AUROC) is a function of prediction window. The AUROC for the training set was higher than the testing set. The average testing AUROC at 2 hours prior to the sepsis onset was 0.86.
-However, the AUROC decreases as we move away from the time of sepsis onset. 
-![auroc](auroc.PNG)
+Five-fold cross-validation model was developed using XGBClassifier. The area under the ROC curve (AUROC) is a function of prediction window. The AUROC for the training set was higher than the testing set. The average testing AUROC at 2 hours prior to the sepsis onset was 0.86. However, the AUROC decreases as we move away from the time of sepsis onset. 
 
 The average testing cross-validated recall and precision for predicting sepsis class are 73%, and 84%, respectively, 2 hours before the sepsis onset. Whereas, the overall F1-Score was 79.5%. The following provides the precision, recall and F1 score for each of the time intervals before the sepsis onset (sepsis-3 definition). 
+
 ![xgboost-results](xgboost-results.PNG)
 
 Here we compare the XGBoost F1-Score with the other machine learning methods (RF: Random Forest; LR: Logistic Regression; GNB: Gaussian Naïve Bayes).
+
 ![other models](other-models-comparison.PNG)
 
 </ol>
 <h3>Code Description</h3>
 
 <h3>GSoC Experience</h3>
+Google Summer of Code gave me a worthy platform to burnish my skills as well as learn new ones. I had never worked with data at such a large scale. As expected, I faced my fair share of difficulties. 
 
 <h3>Conclusion</h3>
