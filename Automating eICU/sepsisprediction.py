@@ -24,6 +24,8 @@ from sklearn import model_selection as ms
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.metrics import roc_curve, auc, roc_auc_score
+from sklearn.model_selection import cross_val_score
 import xgboost as clf1
 
 class SepsisPrediction:
@@ -387,4 +389,26 @@ class SepsisPrediction:
                         
         #  print(sum(df['label']), len(df))
         df.to_csv('Sepsis8-6'+str(opt)+'.csv')
+
+    
+    def cases_preprocess(df):
+        temp_df=df.drop(columns=['Unnamed: 0'])
+        temp_df=temp_df.dropna()
+        sepsis_df = temp_df[temp_df['label']==1]
+        return sepsis_df
+  
+
+    def control_preprocess(df):
+        temp_df=df.drop(columns=['Unnamed: 0'])
+        temp_df=temp_df.dropna()
+        controls_df = temp_df[temp_df['label']==0]
+        return controls_df
+
+    def get_controls(df):
+        downsampled_df, _, _, _ = train_test_split(df, df['label'], test_size=0.01)
+        return downsampled_df
+
+        
+    
+    
 
