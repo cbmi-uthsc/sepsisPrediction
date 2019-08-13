@@ -391,24 +391,24 @@ class SepsisPrediction:
         df.to_csv('Sepsis8-6'+str(opt)+'.csv')
 
     
-    def cases_preprocess(df):
+    def cases_preprocess(self, df):
         temp_df=df.drop(columns=['Unnamed: 0'])
         temp_df=temp_df.dropna()
         sepsis_df = temp_df[temp_df['label']==1]
         return sepsis_df
   
 
-    def control_preprocess(df):
+    def control_preprocess(eslf, df):
         temp_df=df.drop(columns=['Unnamed: 0'])
         temp_df=temp_df.dropna()
         controls_df = temp_df[temp_df['label']==0]
         return controls_df
 
-    def get_controls(df):
+    def get_controls(self, df):
         downsampled_df, _, _, _ = train_test_split(df, df['label'], test_size=0.01)
         return downsampled_df
 
-        
+
     
     
 
