@@ -1,6 +1,6 @@
-<center><h2>Google Summer of Code - CBMI-UTHSC</h2></center>
+<center><h2>Google Summer of Code - CBMI@UTHSC</h2></center>
 <center><h3>Early Sepsis Prediction using Machine Learning</h3></center>
-<center><h3>Collaborators - Ronet Swaminathan, Aditya Singh, Akram Mohammed and Rishikesan Kamaleswaran</h3></center>
+
 <h3>Table of Contents</h3>
 <ol>
     <li>Introduction</li>
@@ -8,14 +8,16 @@
     <li>Code Description</li>
     <li>GSoC Experience</li>
     <li>Conclusion</li>
+    <li>Team</li>
+    <li>License</li>
 </ol>
 
 <h3>Introduction</h3>
 <p>
-This project aims to provide improved solution to the medical world, where millions of people die due to to Sepsis, a fatal disease where the patient has sustained and dyregulated response to infection. Since sepsis is time-sensitive, it quickly escalates to multiorgan failures, that greatly increases the risk of death. Here we try to accurately predict the occurence of sepsis hours before it actaully occurs. This will provide doctors to take contingency actions early, and will decrease mortality rates significantly.<br>
+This project aims to provide improved solution to the medical world, where millions of people die due to Sepsis, a fatal disease where the patient has dyregulated response to infection. Since sepsis is time-sensitive, it quickly escalates to multiorgan failures, that greatly increases the risk of death. Here we try to accurately predict the occurence of sepsis, hours before it actaully occurs. This will provide doctors to take contingency actions early, and will decrease mortality rates significantly.<br>
 
 This project is based off the <b>eICU</b> database, managed by <b>physionet</b>. Critically ill patients are admitted to the ICU where they receive complex and time-sensitive care from a wide array of clinical staff. Electronic measuring devices are attached to them that produce data at regular intervals. This data, from multiple hospitals was assimilated into the eICU database.<br>
-The vitals for the patients were measured every 5 minutes. Such a frequency is ideal because reduced frequency does not allow us to get a deep insght into the patient's condition, and consequentially, the models are not accurate enough.<br>
+The vitals from the patients were measured every 5 minutes. Such a frequency is ideal because reduced frequency does not allow us to get a deep insight into the patient's condition, and consequentially, the models are not accurate enough.<br>
 
 In this project, we apply multiple machine learning methods to generate descriptive features that are clinically meaningful and predict the onset of sepsis.
 </p>
@@ -26,7 +28,7 @@ In this project, we apply multiple machine learning methods to generate descript
 
 <ol>
 <li><h4>Extracting relevant data</h4></li>
-Since there are multiple tables to work with and the SOFA needs to be calculated from multiple sources, we converged all the relevant things to a single table. For reference, the following is the break-up (for debugging purposes):<br>
+Since there are multiple tables to work with and the Sequential Organ Failure Assesment (SOFA) needs to be calculated from multiple sources, we converged all the relevant things to a single table. For reference, the following is the break-up (for debugging purposes):<br>
 
 <ul>
     <li><b><i>lab.csv</i></b> was used to extract the lab values.</li>
@@ -46,8 +48,8 @@ Since there are multiple tables to work with and the SOFA needs to be calculated
     </li>
 </ul>
 
-<li><h4>SOFA Calulations</h4></li>
-For the SOFA calulation, we first merged all the aforementioned extracted tables. Then we followed the given rubrics to calculated the SOFA-3 scores.
+<li><h4>SOFA Calculations</h4></li>
+For the SOFA calculation, we first merged all the aforementioned extracted tables. Then we followed the given rubrics to calculated the SOFA-3 scores.
 
 ![sofa calculation table](SOFA_CALC.png)
 
@@ -127,7 +129,54 @@ Here we compare the XGBoost F1-Score with the other machine learning methods (RF
 Google Summer of Code gave me a worthy platform to burnish my skills as well as learn new ones. I had never worked with data at such a large scale. As expected, I faced my fair share of difficulties. Firstly, I had a very hard time running all the preprocessing code on my local machine. There was some wastage of time there. But, upon getting access to the UTHSC supercomputer, things started progressing at a much faster pace. I still faced some trouble optimizing all the code. That way, I learnt a lot of vectorization (something I had only implemented in some lab exercises). Also, the relevant data was very scattered throughout the eICU database. Assimilating everything was time consuming, yet the final rsult was even more rewarding. I also had to resolve data insufficiency issues. 
 But my mentors were supportive of all that I did. They constantly provided me with constructive criticism, that helped me shape up my project.  
 Also, GSoC gave me an opportunity to collaborate with international domain experts. Data Science in the healthcare industry has massive amounts of untapped potential and I'm happy that I was able to contribute effectively to their research on Sepsis through this project. 
-As an added bonus, me and my mentors were able to create a research paper on this project. This paper, at the time of writing this readme is under review. The paper has been submitted to the IEEE EMB HIPOCT 2019 conference. (Status will be updated)
+As an added bonus, me and my mentors were able to create a research paper on this project. This paper, at the time of writing this readme is under review in IEEE EMBS HIPOCT 2019 conference. (Status will be updated)
 
 <h3>Conclusion</h3>
-This project was one of the biggest milestones in my undergrad timeline. I wish to continue contributing to open-source organization like CBMI-UTHSC in the future as well. This project has given me a new field (i.e. Computational Biology), to ponder upon. This project has also helped me shape up my future plans for a Masters degree.
+This project was one of the biggest milestones in my undergrad timeline. I wish to continue contributing to open-source organization like CBMI@UTHSC in the future as well. This project has given me a new fields (i.e. Computational Biology and Biomedical Informatics), to ponder upon. This project has also helped me shape up my future plans for a Masters degree in Computer Science with data science as the specialization.
+
+<h3>Team</h3>
+<table align="center">
+  <tbody>
+    <tr>
+		<td align="center" valign="top">
+			<img height="150" src=https://github.com/Ronet05.png?s=150">
+			<br>
+			<a href="http://.html">Ronet Swaminathan</a>
+			<br>
+			<a href="mailto:ronet_swaminathan@ymail.com;">ronet_swaminathan@ymail.com</a>
+			<br>
+			<p>Author</p>
+		</td>
+        <td align="center" valign="top">
+			<img height="150" src="https://github.com/adityauser.png?s=150">
+			<br>
+			<a href="https://github.com/adityauser">Aditya Singh</a>
+			<br>
+			<a href="mailto:adityauser225@gmail.com">adityauser225@gmail.com</a>
+			<br>
+			<p>Author</p>
+		</td>
+		<td align="center" valign="top">
+			<img height="150" src="https://github.com/akram-mohammed.png?s=150">
+			<br>
+			<a href="https://github.com/akram-mohammed">Dr. Akram Mohammed</a>
+			<br>
+			<a href="mailto:akrammohd@gmail.com">akrammohd@gmail.com</a>
+			<br>
+			<p>Mentor, Maintainer</p>
+		</td>
+	 	<td align="center" valign="top">
+			<img width="150" height="150" src="https://github.com/rkamaleswaran.png?s=150">
+			<br>
+			<a href="https://github.com/rkamaleswaran">Dr. Rishikesan Kamaleswaran</a>
+			<br>
+			<a href="mailto:rkamales@uthsc.edu">rkamales@uthsc.edu</a>
+			<br>
+			<p>Mentor</p>
+		</td>
+     </tr>
+  </tbody>
+</table>
+
+<h3>License</h3>
+This software has been released under the [GNU General Public License v3](LICENSE).
