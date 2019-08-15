@@ -28,6 +28,8 @@ from sklearn.metrics import roc_curve, auc, roc_auc_score
 from sklearn.model_selection import cross_val_score
 import xgboost as clf1
 
+import copy
+
 class SepsisPrediction:
 
     def feature_fun(self, col, df):
@@ -123,8 +125,6 @@ class SepsisPrediction:
                         
         
         df = pd.DataFrame.from_dict(dct)
-                        
-      #  print(sum(df['label']), len(df))
         df.to_csv('Sepsis'+str(time_prior)+'-'+str(time_duration)+str(opt)+'.csv')
         
     
@@ -144,6 +144,60 @@ class SepsisPrediction:
     def get_controls(self, df):
         downsampled_df, _, _, _ = train_test_split(df, df['label'], test_size=0.01)
         return downsampled_df
+
+    def run_xgboost(self, runs, sepsis_X_train, sepsis_x_cv, sepsis_y_cv, X_train, x_cv, y_cv):
+        params = {'eta': 0.1, 'max_depth': 6, 'scale_pos_weight': 1, 'objective': 'reg:linear','subsample':0.25,'verbose': False}
+        xgb_model = None
+        Temp_X_cv = copy.copy(sepsis_x_cv)
+        Temp_y_cv = copy.copy(sepsis_y_cv)
+        for i in range(runs):
+            
+            pf = pd.concat([sepsis_X_train, get_controls(X_train).reset_index(drop=True)])
+            labels = pf['label']
+        
+        
+            print("count: ", i+1)
+            print(sum(labels), len(labels))
+            if True:
+            
+                temp, X_cv, label, Y_cv = train_test_split(pf, labels, test_size=0.05)
+                xg_train_1 = clf1.DMatrix(temp.drop(['label'],axis=1), label=label)
+                xg_test = clf1.DMatrix(X_cv.drop(['label'],axis=1), label=Y_cv)
+                model = clf1.train(params, xg_train_1, 50, xgb_model=xgb_model)
+                model.save_model('model.model')
+                xgb_model = 'model.model'
+            
+            
+                print("Fold"+str(i)+'training')
+                print(classification_report(Y_cv, (model.predict(xg_test)>0.5).astype(int)))
+                print('F1 score:', f1_score(Y_cv, (model.predict(xg_test)>0.5).astype(int)))
+                
+                print("Fold"+str(i)+'test')
+
+                CV_X = pd.concat([sepsis_x_cv, x_cv])
+                cv_y = pd.concat([sepsis_y_cv, y_cv])
+                print(classification_report(cv_y, (model.predict(clf1.DMatrix(CV_X.drop(['label'],axis=1), label=cv_y))>0.5).astype(int)))
+                print('F1 score:', f1_score(cv_y, (model.predict(clf1.DMatrix(CV_X.drop(['label'],axis=1), label=cv_y))>0.5).astype(int)))
+
+            
+                Temp_X_cv = pd.concat([Temp_X_cv, X_cv])
+                Temp_y_cv = pd.concat([Temp_y_cv, Y_cv])
+
+
+        print("Train score")
+        print(classification_report(Temp_y_cv, (model.predict(clf1.DMatrix(Temp_X_cv.drop(['label'],axis=1), label=Temp_y_cv))>0.5).astype(int)))
+        print('F1 score:', f1_score(Temp_y_cv, (model.predict(clf1.DMatrix(Temp_X_cv.drop(['label'],axis=1), label=Temp_y_cv))>0.5).astype(int)))
+        print('ROC training: ',roc_auc_score(Temp_y_cv, (model.predict(clf1.DMatrix(Temp_X_cv.drop(['label'],axis=1), label=Temp_y_cv))>0.5).astype(int)))
+
+        print("Test score")
+
+        CV_X = pd.concat([sepsis_x_cv, x_cv])
+        cv_y = pd.concat([sepsis_y_cv, y_cv])
+        print(classification_report(cv_y, (model.predict(clf1.DMatrix(CV_X.drop(['label'],axis=1), label=cv_y))>0.5).astype(int)))
+        print('F1 score:', f1_score(cv_y, (model.predict(clf1.DMatrix(CV_X.drop(['label'],axis=1), label=cv_y))>0.5).astype(int)))
+        print('ROC test: ',roc_auc_score(cv_y, (model.predict(clf1.DMatrix(CV_X.drop(['label'],axis=1), label=cv_y))>0.5).astype(int)))
+
+
 
 
     
