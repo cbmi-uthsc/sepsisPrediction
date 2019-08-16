@@ -5,26 +5,12 @@ import re
 import time as time
 import csv
 
-class Lab_filter:
+class Lab_Filter:
     
     def extract_lab_format(self, lab, respChart, nursechartVent):
-        l_labs=[]
-        for chunk in pd.read_csv(lab, chunksize=10000, usecols=[1, 2, 4, 5, 7, 8, 9]):
-            l_labs.append(chunk)
-        del chunk
+        df_labs=lab
+        df_resp=respChart
 
-        df_labs=pd.concat(l_labs, sort=False)
-        df_labs.to_csv("labs_before_FiO2.csv", sep=',', index=False, encoding='utf-8')
-
-        respiratory=pd.read_csv(respChart, chunksize=10000)
-        l_resp=[]
-        for chunk in respiratory:
-            l_resp.append(chunk)  
-        
-        df_resp=pd.concat(l_resp, sort=False)
-        del chunk
-        del l_resp
-        
         respFiO2=df_resp.loc[df_resp['respchartvaluelabel']=='FiO2']
         respFiO2.loc[respFiO2['respchartvalue']==0, 'respchartvalue']=1
         respFiO2['respchartvalue']=respFiO2['respchartvalue'].str.replace('%','')
@@ -101,16 +87,17 @@ class Lab_filter:
 
 
         #Merge the ventilator details with the lab data for SOFA calculations
-        nursevent=pd.read_csv(nursechartVent)
+        nursevent=nursechartVent
         nursevent=nursevent[['patientunitstayid','nursingchartentryoffset','nursingchartvalue']]
         labs_withO2=pd.merge(pre_final_lab,nursevent,left_on=['patientunitstayid'],right_on=['patientunitstayid'],how='left').drop_duplicates()
         
         return labs_withO2
         
         
-    def calc_lab_sofa(self, labs_withO2):
+    def calc_lab_sofa(self, labs_withO2_in):
 
-        labs_withO2=pd.read_csv(labs_withO2)
+
+        labs_withO2=labs_withO2_in
 
         labs_withO2.loc[(labs_withO2['platelets_x_1000'] >=150), 'SOFA_Coagulation'] = 0
         labs_withO2.loc[(labs_withO2['platelets_x_1000'] <150), 'SOFA_Coagulation'] = 1

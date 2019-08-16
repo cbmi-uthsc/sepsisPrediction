@@ -3,11 +3,12 @@ import numpy as np
 import collections
 import re
 
+
 class tsuspicion:
     #Input needs to be the table containing drug data, treatment data and microlab data
     
-    def get_antibiotics(medication_table_in, treatment_table_in, microlab_input):
-        medication=pd.read_csv(medication_table_in)
+    def get_antibiotics(self, medication_table_in, treatment_table_in, microlab_input):
+        medication=medication_table_in
         # subselect the variable columns
         medication_columns = ['drugorderoffset', 'patientunitstayid','drugstartoffset','drugname', 'dosage', 'routeadmin', 'drugstopoffset']
         medication_subset = medication[medication_columns]
@@ -35,7 +36,7 @@ class tsuspicion:
         medication_subset_filt = medication_subset[medication_subset.drugname.str.contains('|'.join(antibiotics_list), flags=re.IGNORECASE, na=False)]
         del medication_subset
         
-        treatment=pd.read_csv(treatment_table_in)
+        treatment=treatment_table_in
         treatment_columns = ['treatmentoffset', 'patientunitstayid','treatmentstring']
         treatment_subset = treatment[treatment_columns]
         treatment_subset = treatment_subset[treatment_subset['treatmentstring'].str.contains("cardiovascular")]
@@ -43,7 +44,7 @@ class tsuspicion:
         treatment_subset = treatment_subset[treatment_columns]
         treatment_subset_new = treatment_subset.rename(columns={'treatmentoffset': 'culturetakenoffset'})
 
-        microlab=pd.read_csv(microlab_input)
+        microlab=microlab_input
         microlab_columns = ['culturetakenoffset', 'patientunitstayid']
         microlab_subset = microlab[microlab_columns]
         treatment_microlab = pd.concat([treatment_subset_new,microlab_subset])

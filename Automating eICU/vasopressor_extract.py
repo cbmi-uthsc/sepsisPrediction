@@ -8,7 +8,7 @@ import csv
 class Vasopressors:
 
     def extract_drugrates(self, infusionDrug):
-        infusiondrug=pd.read_csv(infusionDrug)
+        infusiondrug=infusionDrug
         infusiondrug['drugname']=infusiondrug['drugname'].astype('str')
         drug_names=infusiondrug['drugname'].unique()
         inf_drug=infusiondrug.loc[(infusiondrug['drugname'].str.contains("Dopamine")) | 
@@ -55,8 +55,8 @@ class Vasopressors:
     def incorporate_weights(self, inf_drug_filtered, patient_data):
 
         #For patient_data, in eICU, the table is patient.csv, and the headers will be different for a different dataset
-        patient=pd.read_csv(patient_data, usecols=['patientunitstayid', 'admissionweight', 'dischargeweight', 'unitdischargeoffset'])
-        inf_drug_pre_patient=pd.read_csv(inf_drug_filtered)
+        patient=patient_data
+        inf_drug_pre_patient=inf_drug_filtered
         
         inf_drug_pre_patient['admissionweight']=np.nan
         inf_drug_pre_patient['dischargeweight']=np.nan
@@ -85,8 +85,8 @@ class Vasopressors:
         
         return inf_drug_pre_patient
     
-    def add_separate_cols(self, inf_drug_pre_patient):
-        inf_drug_pre_patient=pd.read_csv(inf_drug_pre_patient)
+    def add_separate_cols(self, inf_drug_weighted):
+        inf_drug_pre_patient=inf_drug_weighted
 
         #renaming drugs to standardize changes made before in extract_drugrates() function
         inf_drug_pre_patient.loc[inf_drug_pre_patient['drugname'].str.contains('Norepi', case=True, regex=False),'drugname']='Norepinephrine'
@@ -110,27 +110,28 @@ class Vasopressors:
         del inf_drug_pre_patient['drugname']
         del inf_drug_pre_patient['infusionrate']
         del inf_drug_pre_patient['drugamount']
-
+        
+        #drugrate_norm is same as inf_drug_pre_patient
         inf_drug_pre_patient.to_csv("drugrate_norm.csv", sep=',', index=False, encoding='utf-8')
 
         return inf_drug_pre_patient
 
     def calc_SOFA(self, drugrate_norm, nursechartMAP):
-        drugrate_updated=pd.read_csv(drugrate_norm)
+        drugrate_updated=drugrate_norm
         columns=['patientunitstayid','infusionoffset','Norepinephrine','Epinephrine','Dopamine','Dobutamine']
         drugrate_updated=drugrate_updated[columns]
 
         #from earlier gcs_extract file
-        nursemap=pd.read_csv(nursechartMAP)
+        nursemap=nursechartMAP
         nursemap=nursemap[['patientunitstayid','nursingchartentryoffset','nursingchartvalue']]
         #since we need both the cardio params as well as the MAP values individually, we will use outer join
         df_cardiovascular=pd.merge(drugrate_updated,nursemap,left_on=['patientunitstayid'],right_on=['patientunitstayid'],how='outer').drop_duplicates()
-
+        
         df_cardiovascular.loc[((df_cardiovascular['Dopamine'] >15)) | ((df_cardiovascular['Epinephrine'] >0.1)) | ((df_cardiovascular['Norepinephrine'] >0.1)), 'SOFA_cardio'] = 4
         df_cardiovascular.loc[((df_cardiovascular['Dopamine'] <15)) | ((df_cardiovascular['Epinephrine'] <=0.1)) | ((df_cardiovascular['Norepinephrine'] <=0.1)), 'SOFA_cardio'] = 3
         df_cardiovascular.loc[((df_cardiovascular['Dopamine'] <5)) | ((df_cardiovascular['Dobutamine'] >0)), 'SOFA_cardio'] = 2
-        df_cardiovascular.loc[df_cardiovascular['nursingchartvalue']<70,['SOFA_cardio']]=1
-        df_cardiovascular.loc[df_cardiovascular['nursingchartvalue']>71,['SOFA_cardio']]=0
+        df_cardiovascular.loc[df_cardiovascular['nursingchartvalue']<70,'SOFA_cardio']=1
+        df_cardiovascular.loc[df_cardiovascular['nursingchartvalue']>71,'SOFA_cardio']=0
 
         #Now we need to combine these 2 timeoffsets into a single offset
         df_cardiovascular['offset'] = np.where(df_cardiovascular['infusionoffset']>0, df_cardiovascular['infusionoffset'], df_cardiovascular['nursingchartentryoffset'])

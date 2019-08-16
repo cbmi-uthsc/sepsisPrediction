@@ -4,18 +4,14 @@ import matplotlib.pyplot as plt
 import time as time
 import csv
 
+
 class GCS_Filter:
     # functions for extracting gcs scores, map values, and ventilator details
     # input for all functions is the "nurseCharting" table in the eICU database. For custom input, first convert your input into the suitable format
     
     def extract_GCS_withscores(self, nurseCharting):
-        l_nursechart=[]
-        for chunk in pd.read_csv(nurseCharting, chunksize=10000, usecols=[1, 3, 4, 5, 7]):
-            df=chunk.loc[(chunk['nursingchartcelltypecat']=='Scores') & (chunk['nursingchartcelltypevallabel']=='Glasgow coma score')]
-            l_nursechart.append(df)
-        del chunk
-        del df
-        df_nursechart=pd.concat(l_nursechart, sort=False)
+        
+        df_nursechart=nurseCharting.loc[(nurseCharting['nursingchartcelltypecat']=='Scores') & (nurseCharting['nursingchartcelltypevallabel']=='Glasgow coma score')]
         df_nursechart.to_csv("gcs_scores.csv",sep=',',index=False,encoding='utf-8')
         df_gcs=df_nursechart
         del df_nursechart
@@ -42,13 +38,7 @@ class GCS_Filter:
         return d_gcs
 
     def extract_GCS(self, nurseCharting):
-        l_nursechart=[]
-        for chunk in pd.read_csv(nurseCharting, chunksize=10000, usecols=[1, 3, 4, 5, 7]):
-            df=chunk.loc[(chunk['nursingchartcelltypecat']=='Scores') & (chunk['nursingchartcelltypevallabel']=='Glasgow coma score')]
-            l_nursechart.append(df)
-        del chunk
-        del df
-        df_nursechart=pd.concat(l_nursechart, sort=False)
+        df_nursechart=nurseCharting.loc[(nurseCharting['nursingchartcelltypecat']=='Scores') & (nurseCharting['nursingchartcelltypevallabel']=='Glasgow coma score')]
         df_nursechart.to_csv("gcs_scores.csv",sep=',',index=False,encoding='utf-8')
         df_gcs=df_nursechart
         del df_nursechart
@@ -63,26 +53,14 @@ class GCS_Filter:
         
     
     def extract_MAP(self, nurseCharting):
-        l_map=[]
-        for chunk in pd.read_csv(nurseCharting, chunksize=10000, usecols=[1, 3, 4, 5, 7]):
-            df=chunk.loc[(chunk['nursingchartcelltypevallabel']=='MAP (mmHg)')]
-            l_map.append(df)
-        del chunk
-        del df
-        df_map=pd.concat(l_map,sort=False)
+        df_map=nurseCharting.loc[(nurseCharting['nursingchartcelltypevallabel']=='MAP (mmHg)')]
         df_map.to_csv("nursechartMAP.csv",index=False)
         
         return df_map
 
         
     def extract_VENT(self, nurseCharting):
-        l_vent=[]
-        for chunk in pd.read_csv(nurseCharting, chunksize=10000, usecols=[1, 3, 4, 5, 7]):
-            df=chunk.loc[(chunk['nursingchartcelltypevallabel']=='O2 Admin Device')]
-            l_vent.append(df)
-        del chunk
-        del df
-        df_vent=pd.concat(l_vent,sort=False)
+        df_vent=nurseCharting.loc[(nurseCharting['nursingchartcelltypevallabel']=='O2 Admin Device')]
         df_vent.to_csv("nursechartVent.csv",index=False)
         
         return df_vent
