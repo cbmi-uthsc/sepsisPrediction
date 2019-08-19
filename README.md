@@ -114,15 +114,40 @@ Here we compare the XGBoost F1-Score with the other machine learning methods (RF
 <ul>
 <li><b>antibiotics.py</b></li>
 <ul>
-<li>get_antibiotics</li>
+<li>get_antibiotics()</li>
 Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
 Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
 </ul>
 <li><b>gcs_extract.py</b></li>
+<ul>
+<li>get_antibiotics()</li>
+Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
+Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
+</ul>
 <li><b>labs_extract.py</b></li>
+<ul>
+<li>get_antibiotics()</li>
+Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
+Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
+</ul>
 <li><b>merge_final_table.py</b></li>
+<ul>
+<li>get_antibiotics()</li>
+Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
+Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
+</ul>
 <li><b>sepsis_calc.py</b></li>
+<ul>
+<li>get_antibiotics()</li>
+Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
+Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
+</ul>
 <li><b>vasopressor_extract.py</b></li>
+<ul>
+<li>get_antibiotics()</li>
+Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
+Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
+</ul>
 </ul>
 <h3>GSoC Experience</h3>
 Google Summer of Code gave me a worthy platform to burnish my skills as well as learn new ones. I had never worked with data at such a large scale. As expected, I faced my fair share of difficulties. Firstly, I had a very hard time running all the preprocessing code on my local machine. There was some wastage of time there. But, upon getting access to the UTHSC supercomputer, things started progressing at a much faster pace. I still faced some trouble optimizing all the code. That way, I learnt a lot of vectorization (something I had only implemented in some lab exercises). Also, the relevant data was very scattered throughout the eICU database. Assimilating everything was time consuming, yet the final rsult was even more rewarding. I also had to resolve data insufficiency issues. 
