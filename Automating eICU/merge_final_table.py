@@ -9,7 +9,7 @@ import glob
 
 class MergeTables:
 
-    def merge_final(self, gcs_scores_updated, labs_morevars, drugrate_norm_updated, tsus_max, tsepsis_table):
+    def merge_final(self, gcs_scores_updated, labs_morevars, drugrate_norm_updated, tsus_max, tsepsis_table, vitals_table):
 
         d_gcs=gcs_scores_updated
         d_gcs=d_gcs.drop(columns=['nursingchartcelltypecat','nursingchartcelltypevallabel'])
@@ -67,7 +67,10 @@ class MergeTables:
 
         #we need to add vitals as well for these patients
         pids=final_build['patientunitstayid'].unique()
-        vitals=pd.read_csv("vitalPeriodic.csv",usecols=['patientunitstayid','observationoffset','heartrate','respiration'])
+        
+        #merge vitals as well
+        vitals=vitals_table
+        vitals=vitals[['patientunitstayid','observationoffset','heartrate','respiration']]
         tomerge=vitals.loc[vitals['patientunitstayid'].isin(pids)]
         del vitals
         tomerge=tomerge.rename(columns={'observationoffset':'offset'})

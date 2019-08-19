@@ -10,10 +10,10 @@ class tsepsis:
     def calc_tsepsis(self, labs_withSOFA, df_cardiovascular, gcs_withSOFA, tsus_max):
         lab_sofa=labs_withSOFA
         vent_sofa=df_cardiovascular
-        vent_sofa=vent_sofa[['patient']]
-        vent_sofa=pd.read_csv(df_cardiovascular,usecols=['patientunitstayid','offset','SOFA_cardio'])
-        gcs_sofa=pd.read_csv(gcs_withSOFA,usecols=['patientunitstayid','offset','SOFA_GCS'])
-        t_sus=pd.read_csv(tsus_max)
+        vent_sofa=vent_sofa[['patientunitstayid','offset','SOFA_cardio']]
+        gcs_sofa=gcs_withSOFA
+        gcs_sofa=gcs_sofa[['patientunitstayid','offset','SOFA_GCS']]
+        t_sus=tsus_max
 
         patientIDs_IV = t_sus.patientunitstayid.unique().tolist()
         patientIDs_IV_sub = pd.DataFrame(patientIDs_IV)
