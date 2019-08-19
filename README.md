@@ -113,6 +113,11 @@ Here we compare the XGBoost F1-Score with the other machine learning methods (RF
 <b><i>NOTE: Before using any of the functions listed in this project, make sure the data is formatted according the eICU schema. Only then, will it work as intended.</i></b>
 <ul>
 <li><b>antibiotics.py</b></li>
+<ul>
+<li>get_antibiotics</li>
+Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
+Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
+</ul>
 <li><b>gcs_extract.py</b></li>
 <li><b>labs_extract.py</b></li>
 <li><b>merge_final_table.py</b></li>
