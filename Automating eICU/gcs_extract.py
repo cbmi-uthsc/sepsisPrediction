@@ -9,7 +9,7 @@ class GCS_Filter:
     # functions for extracting gcs scores, map values, and ventilator details
     # input for all functions is the "nurseCharting" table in the eICU database. For custom input, first convert your input into the suitable format
     
-    def extract_GCS_withscores(self, nurseCharting):
+    def extract_GCS_withSOFA(self, nurseCharting):
         
         df_nursechart=nurseCharting.loc[(nurseCharting['nursingchartcelltypecat']=='Scores') & (nurseCharting['nursingchartcelltypevallabel']=='Glasgow coma score')]
         df_nursechart.to_csv("gcs_scores.csv",sep=',',index=False,encoding='utf-8')

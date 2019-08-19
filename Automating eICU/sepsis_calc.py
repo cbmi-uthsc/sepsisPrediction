@@ -8,7 +8,9 @@ import csv
 class tsepsis:
 
     def calc_tsepsis(self, labs_withSOFA, df_cardiovascular, gcs_withSOFA, tsus_max):
-        lab_sofa=pd.read_csv(labs_withSOFA)
+        lab_sofa=labs_withSOFA
+        vent_sofa=df_cardiovascular
+        vent_sofa=vent_sofa[['patient']]
         vent_sofa=pd.read_csv(df_cardiovascular,usecols=['patientunitstayid','offset','SOFA_cardio'])
         gcs_sofa=pd.read_csv(gcs_withSOFA,usecols=['patientunitstayid','offset','SOFA_GCS'])
         t_sus=pd.read_csv(tsus_max)
