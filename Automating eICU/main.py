@@ -7,6 +7,29 @@ from merge_final_table import MergeTables
 from sepsis_calc import tsepsis
 from vasopressor_extract import Vasopressors
 from sepsisprediction import SepsisPrediction
+from sklearn.metrics import roc_curve, auc, roc_auc_score
+
+from sklearn import preprocessing
+import datetime
+
+# machine learning
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC, LinearSVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import Perceptron
+from sklearn.linear_model import SGDClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+from sklearn.metrics import f1_score
+from sklearn import model_selection as ms
+
+from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+import copy
 
 tsus=tsuspicion()
 med_in=pd.read_csv("medication.csv")
@@ -43,12 +66,38 @@ table_merger=MergeTables()
 
 vitals=pd.read_csv("vitalPeriodic.csv")
 merged_table=table_merger.merge_final(gcs_scores, lab_beforeSOFA, infusiondrug_withSOFA, tsus_max_df, tsepsis_table, vitals)
+merged_table.to_csv("merged_training_table.csv")
 
+del merged_table
+chunks=pd.read_csv("merged_training_table.csv", chunksize=1000000)
 #Start sepsis predictions
 sepsispred=SepsisPrediction()
 
-#for loop to create all the necessary files
+#for loop to create all the necessary files, specify the time periods
 
+time_prior = 2
+time_duration = 6
 
+num=1
+for chunk in chunks:  
+    sepsispred.process(chunk, num, time_prior, time_duration)
+    num+=1
 
+df = pd.read_csv('Sepsis'+str(time_prior)+'-'+str(time_duration)+str(1)+'.csv')
+for i in range(num):
+    df = pd.concat([df, pd.read_csv('Sepsis'+str(time_prior)+'-'+str(time_duration)+str(i+2)+'.csv')])    
+df.reset_index(drop=True, inplace=True)
 
+sepsis_df = sepsispred.case_preprocess(df)
+labels = sepsis_df['label']
+sepsis_X_train, sepsis_x_cv, sepsis_label, sepsis_y_cv = train_test_split(sepsis_df, labels, test_size=0.2, random_state=23)
+
+controls_df = sepsispred.control_preprocess(df)
+labels = controls_df['label']
+X_train, x_cv, label, y_cv = train_test_split(controls_df, labels, test_size=0.2, random_state=23)
+
+#adjust the parameters according to will
+params = {'eta': 0.1, 'max_depth': 6, 'scale_pos_weight': 1, 'objective': 'reg:linear','subsample':0.25,'verbose': False}
+xgb_model = None
+
+sepsispred.run_xgboost(10, sepsis_X_train, sepsis_x_cv, sepsis_y_cv, X_train, x_cv, y_cv)
