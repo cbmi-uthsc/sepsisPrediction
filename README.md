@@ -138,9 +138,13 @@ Return - a table with ventilator details of each admitted patient over the perio
 </ul>
 <li><b>labs_extract.py</b></li>
 <ul>
-<li>get_antibiotics()</li>
-Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
-Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
+<li>extract_lab_format()</li>
+Parameters - lab_table, respiratoryCharting_table in the format of the eICU dataset and the ventilator details in the format of the extract_VENT() fn.<br>
+Return - a table with all the lab values in columns for every patient along with the ventilator details to check for O2.
+
+<li>calc_lab_sofa()</li>
+Parameters - input format should match the output of the extract_lab_format return value. <br>
+Return - a table with the SOFA scores related to lab values. 
 </ul>
 <li><b>merge_final_table.py</b></li>
 <ul>
