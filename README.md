@@ -115,25 +115,25 @@ Here we compare the XGBoost F1-Score with the other machine learning methods (RF
 <li><b>antibiotics.py</b></li>
 <ul>
 <li>get_antibiotics()</li>
-Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
+Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.<br>
 Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
 </ul>
 <li><b>gcs_extract.py</b></li>
 <ul>
 <li>extract_GCS_withSOFA()</li>
-Parameters - nurseCharting_table in the format of the eICU dataset.
+Parameters - nurseCharting_table in the format of the eICU dataset.<br>
 Return - a table with patients with the SOFA scores of the patients based on the GCS score. 
 
 <li>extract_GCS()</li>
-Parameters - nurseCharting_table in the format of the eICU dataset.
+Parameters - nurseCharting_table in the format of the eICU dataset.<br>
 Return - a table with GCS scores of each admitted patient over the period of admit duration.
 
 <li>extract_MAP()</li>
-Parameters - nurseCharting_table in the format of the eICU dataset.
+Parameters - nurseCharting_table in the format of the eICU dataset.<br>
 Return - a table with Mean Arterial Pressure values of each admitted patient over the period of admit duration.
 
 <li>extract_VENT()</li>
-Parameters - nurseCharting_table in the format of the eICU dataset.
+Parameters - nurseCharting_table in the format of the eICU dataset.<br>
 Return - a table with ventilator details of each admitted patient over the period of admit duration.
 </ul>
 <li><b>labs_extract.py</b></li>
