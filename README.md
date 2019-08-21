@@ -106,7 +106,7 @@ Here we compare the XGBoost F1-Score with the other machine learning methods (RF
 
 ![other models](other-models-comparison.PNG)
 
-<b><i>NOTE: All of the model statistics are exclusive to the eICU database. A new database might produce different results, better or worse. Hyper-parameterization will be required.</i></b>
+<b><i>NOTE: All of the model statistics are exclusive to the eICU database. A new database might produce different results, better or worse. Hyper-parameterization will be required.</i></b><br>
 
 </ol>
 <h3>Code Description</h3>
@@ -146,24 +146,43 @@ Return - a table with all the lab values in columns for every patient along with
 Parameters - input format should match the output of the extract_lab_format return value. <br>
 Return - a table with the SOFA scores related to lab values. 
 </ul>
-<li><b>merge_final_table.py</b></li>
+
+<li><b>vasopressor_extract.py</b></li>
 <ul>
-<li>get_antibiotics()</li>
-Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
-Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
+<li>extract_drugrates()</li>
+Parameters - infusionDrug_table in the format of the eICU dataset.<br>
+Return - a table with all the SOFA related vasopressors, like Dopamine, Norepinephrine etc. Also the units are separated into a different column to normalize it later.
+
+<li>incorporate_weights()</li>
+Paramters - a filtered table of SOFA related vasopressors (in the format of the output of the extract_drugrates() function), and patient_table in the format of the eICU dataset.
+Return - a table containing normalized and weighted results.
+
+<li>add_separate_cols()</li>
+Paramters - a noramlized table of vasopressors (in the format of the output of the incorporate_weights() function)
+Return - a table containing normalized and weighted results, and the drugnames all segragated into different columns, for SOFA calculations.
+
+<li>calc_SOFA()</li>
+Paramters - a table in the format of the output of the add_separate_cols() function.
+Return - a table with the SOFA scores of the cardiovascular paramters.
 </ul>
+
 <li><b>sepsis_calc.py</b></li>
 <ul>
 <li>get_antibiotics()</li>
 Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
 Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
 </ul>
-<li><b>vasopressor_extract.py</b></li>
+
+<li><b>merge_final_table.py</b></li>
 <ul>
 <li>get_antibiotics()</li>
 Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
 Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
 </ul>
+
+
+
+
 </ul>
 <h3>GSoC Experience</h3>
 Google Summer of Code gave me a worthy platform to burnish my skills as well as learn new ones. I had never worked with data at such a large scale. As expected, I faced my fair share of difficulties. Firstly, I had a very hard time running all the preprocessing code on my local machine. There was some wastage of time there. But, upon getting access to the UTHSC supercomputer, things started progressing at a much faster pace. I still faced some trouble optimizing all the code. That way, I learnt a lot of vectorization (something I had only implemented in some lab exercises). Also, the relevant data was very scattered throughout the eICU database. Assimilating everything was time consuming, yet the final result was even more rewarding. I also had to resolve data insufficiency issues. 
