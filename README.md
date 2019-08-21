@@ -111,57 +111,60 @@ Here we compare the XGBoost F1-Score with the other machine learning methods (RF
 </ol>
 <h3>Code Description</h3>
 <b><i>NOTE: Before using any of the functions listed in this project, make sure the data is formatted according the eICU schema. Only then, will it work as intended.</i></b>
+
 <ul>
 <li><b>antibiotics.py</b></li>
 <ul>
-<li>get_antibiotics()</li>
+<li><b>get_antibiotics()</b></li>
 Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.<br>
 Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
 </ul>
+
 <li><b>gcs_extract.py</b></li>
 <ul>
-<li>extract_GCS_withSOFA()</li>
+<li><b>extract_GCS_withSOFA()</b></li>
 Parameters - nurseCharting_table in the format of the eICU dataset.<br>
 Return - a table with patients with the SOFA scores of the patients based on the GCS score. 
 
-<li>extract_GCS()</li>
+<li><b>extract_GCS()</b></li>
 Parameters - nurseCharting_table in the format of the eICU dataset.<br>
 Return - a table with GCS scores of each admitted patient over the period of admit duration.
 
-<li>extract_MAP()</li>
+<li><b>extract_MAP()</b></li>
 Parameters - nurseCharting_table in the format of the eICU dataset.<br>
 Return - a table with Mean Arterial Pressure values of each admitted patient over the period of admit duration.
 
-<li>extract_VENT()</li>
+<li><b>extract_VENT()</b></li>
 Parameters - nurseCharting_table in the format of the eICU dataset.<br>
 Return - a table with ventilator details of each admitted patient over the period of admit duration.
 </ul>
+
 <li><b>labs_extract.py</b></li>
 <ul>
-<li>extract_lab_format()</li>
+<li><b>extract_lab_format()</b></li>
 Parameters - lab_table, respiratoryCharting_table in the format of the eICU dataset and the ventilator details in the format of the extract_VENT() fn.<br>
 Return - a table with all the lab values in columns for every patient along with the ventilator details to check for O2.
 
-<li>calc_lab_sofa()</li>
+<li><b>calc_lab_sofa()</b></li>
 Parameters - input format should match the output of the extract_lab_format return value. <br>
 Return - a table with the SOFA scores related to lab values. 
 </ul>
 
 <li><b>vasopressor_extract.py</b></li>
 <ul>
-<li>extract_drugrates()</li>
+<li><b>extract_drugrates()</b></li>
 Parameters - infusionDrug_table in the format of the eICU dataset.<br>
 Return - a table with all the SOFA related vasopressors, like Dopamine, Norepinephrine etc. Also the units are separated into a different column to normalize it later.
 
-<li>incorporate_weights()</li>
+<li><b>incorporate_weights()</b></li>
 Paramters - a filtered table of SOFA related vasopressors (in the format of the output of the extract_drugrates() function), and patient_table in the format of the eICU dataset.
 Return - a table containing normalized and weighted results.
 
-<li>add_separate_cols()</li>
+<li><b>add_separate_cols()</b></li>
 Paramters - a noramlized table of vasopressors (in the format of the output of the incorporate_weights() function)
 Return - a table containing normalized and weighted results, and the drugnames all segragated into different columns, for SOFA calculations.
 
-<li>calc_SOFA()</li>
+<li><b>calc_SOFA()</b></li>
 Paramters - a table in the format of the output of the add_separate_cols() function.
 Return - a table with the SOFA scores of the cardiovascular paramters.
 </ul>
