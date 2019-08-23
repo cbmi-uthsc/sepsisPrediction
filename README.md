@@ -157,48 +157,58 @@ Parameters - infusionDrug_table in the format of the eICU dataset.<br>
 Return - a table with all the SOFA related vasopressors, like Dopamine, Norepinephrine etc. Also the units are separated into a different column to normalize it later.
 
 <li><b>incorporate_weights()</b></li>
-Paramters - a filtered table of SOFA related vasopressors (in the format of the output of the extract_drugrates() function), and patient_table in the format of the eICU dataset.
+Paramters - a filtered table of SOFA related vasopressors (in the format of the output of the extract_drugrates() function), and patient_table in the format of the eICU dataset.<br>
 Return - a table containing normalized and weighted results.
 
 <li><b>add_separate_cols()</b></li>
-Paramters - a noramlized table of vasopressors (in the format of the output of the incorporate_weights() function)
+Paramters - a noramlized table of vasopressors (in the format of the output of the incorporate_weights() function).<br>
 Return - a table containing normalized and weighted results, and the drugnames all segragated into different columns, for SOFA calculations.
 
 <li><b>calc_SOFA()</b></li>
-Paramters - a table in the format of the output of the add_separate_cols() function.
+Paramters - a table in the format of the output of the add_separate_cols() function.<br>
 Return - a table with the SOFA scores of the cardiovascular paramters.
 </ul>
 
 <li><b>sepsis_calc.py</b></li>
 <ul>
 <li><b>calc_tsepsis()</b></li>
-Parameters - lab table with SOFA (return value of calc_lab_sofa() of labs_extract), vasopressors table with SOFA (return value of calc_SOFA() from vasopressor_extract), GCS table with SOFA (return value of extract_GCS_withSOFA() from gcs_extract), table with tsuspicion (return value of get_antibiotics() from antibiotics)
+Parameters - lab table with SOFA (return value of calc_lab_sofa() of labs_extract), vasopressors table with SOFA (return value of calc_SOFA() from vasopressor_extract), GCS table with SOFA (return value of extract_GCS_withSOFA() from gcs_extract), table with tsuspicion (return value of get_antibiotics() from antibiotics)<br>
 Return - a table with patients with the time of onset of sepsis.
 </ul>
 
 <li><b>merge_final_table.py</b></li>
 <ul>
 <li><b>merge_final()</b></li>
-Parameters - GCS_scores table (return value of extract_GCS() from gcs_extract) , labs_morevars (return value of extract_lab_format() from labs_extract), drugrate_norm_updated (return value of calc_SOFA from vasopressor_extract), tsus_max (return value of get_antibiotics() from antibiotics), tsepsis_table (return value of calc_tsepsis() from sepsis_calc), vitals_table (vitals table in the format of eICU dataset)
+Parameters - GCS_scores table (return value of extract_GCS() from gcs_extract) , labs_morevars (return value of extract_lab_format() from labs_extract), drugrate_norm_updated (return value of calc_SOFA from vasopressor_extract), tsus_max (return value of get_antibiotics() from antibiotics), tsepsis_table (return value of calc_tsepsis() from sepsis_calc), vitals_table (vitals table in the format of eICU dataset).<br>
 Return - a table ready for training, with all features in columns.
 </ul>
 
 <li><b>sepsisprediction.py</b></li>
 <ul>
 <li><b>feature_fun()</b></li>
+Parameters - column name, dataframe<br>
+Return - values of 7 descriptive features for the particular column name in the dataframe. (features listed above in Feature Extraction section)
 
 <li><b>process()</b></li>
+Paramters - merged_table (return value of merge_final() of merge_final_table), index, time_prior (how much time before true onset, in hours), time_duration (duration of time used for training data, in hours)<br>
+Return - NULL, csv is pushed to the working directory.
 
-<li><b>process()</b></li>
 
 <li><b>case_preprocess()</b></li>
+Paramters - training_data after process(), concatenated into a single dataframe. (Check main.py for reference) <br>
+Return - table containing all septic patients. 
 
 <li><b>control_preprocess()</b></li>
+Parameters - training_data after process(), concatenated into a single dataframe. (Check main.py for reference)<br>
+Return - table containing all control patients. 
 
 <li><b>get_controls()</b></li>
+Parameters - controls_table (return value of control_preprocess)<br>
+Return - downsampled dataframe split by train_test_split()
 
 <li><b>run_xgboost()</b></li>
-
+Parameters -  num_runs, sepsis_training, sepsis_, sepsis_y_cv, control_train, x_crossval, y_crossval<br>
+Return - xgboost model run for num_run iterations using partial fit method, along with AUCROC values
 
 
 
