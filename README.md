@@ -171,17 +171,33 @@ Return - a table with the SOFA scores of the cardiovascular paramters.
 
 <li><b>sepsis_calc.py</b></li>
 <ul>
-<li>get_antibiotics()</li>
-Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
-Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
+<li><b>calc_tsepsis()</b></li>
+Parameters - lab table with SOFA (return value of calc_lab_sofa() of labs_extract), vasopressors table with SOFA (return value of calc_SOFA() from vasopressor_extract), GCS table with SOFA (return value of extract_GCS_withSOFA() from gcs_extract), table with tsuspicion (return value of get_antibiotics() from antibiotics)
+Return - a table with patients with the time of onset of sepsis.
 </ul>
 
 <li><b>merge_final_table.py</b></li>
 <ul>
-<li>get_antibiotics()</li>
-Parameters - medication_table, treatment_table, microlab_table in the format of the eICU dataset.
-Return - a table with patients fulfilling the suspicion criteria and their max time of suspicion. 
+<li><b>merge_final()</b></li>
+Parameters - GCS_scores table (return value of extract_GCS() from gcs_extract) , labs_morevars (return value of extract_lab_format() from labs_extract), drugrate_norm_updated (return value of calc_SOFA from vasopressor_extract), tsus_max (return value of get_antibiotics() from antibiotics), tsepsis_table (return value of calc_tsepsis() from sepsis_calc), vitals_table (vitals table in the format of eICU dataset)
+Return - a table ready for training, with all features in columns.
 </ul>
+
+<li><b>sepsisprediction.py</b></li>
+<ul>
+<li><b>feature_fun()</b></li>
+
+<li><b>process()</b></li>
+
+<li><b>process()</b></li>
+
+<li><b>case_preprocess()</b></li>
+
+<li><b>control_preprocess()</b></li>
+
+<li><b>get_controls()</b></li>
+
+<li><b>run_xgboost()</b></li>
 
 
 
