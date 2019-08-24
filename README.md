@@ -235,15 +235,7 @@ This project was one of the biggest milestones in my undergrad timeline. I wish 
 			<br>
 			<p>Author</p>
 		</td>
-        <td align="center" valign="top">
-			<img height="150" src="https://github.com/adityauser.png?s=150">
-			<br>
-			<a href="https://github.com/adityauser">Aditya Singh</a>
-			<br>
-			<a href="mailto:adityauser225@gmail.com">adityauser225@gmail.com</a>
-			<br>
-			<p>Author</p>
-		</td>
+
 		<td align="center" valign="top">
 			<img height="150" src="https://github.com/akram-mohammed.png?s=150">
 			<br>
