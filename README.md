@@ -235,7 +235,6 @@ This project was one of the biggest milestones in my undergrad timeline. I wish 
 			<br>
 			<p>Author</p>
 		</td>
-
 		<td align="center" valign="top">
 			<img height="150" src="https://github.com/akram-mohammed.png?s=150">
 			<br>
