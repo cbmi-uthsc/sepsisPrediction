@@ -236,6 +236,15 @@ This project was one of the biggest milestones in my undergrad timeline. I wish 
 			<p>Author</p>
 		</td>
 		<td align="center" valign="top">
+			<img height="150" src=https://github.com/adityauser.png?s=150">
+			<br>
+			<a href="http://.html">Aditya Singh</a>
+			<br>
+			<a href="mailto:aditya.singh.mat17@itbhu.ac.in;">aditya.singh.mat17@itbhu.ac.in</a>
+			<br>
+			<p>Author</p>
+		</td>						     
+		<td align="center" valign="top">
 			<img height="150" src="https://github.com/akram-mohammed.png?s=150">
 			<br>
 			<a href="https://github.com/akram-mohammed">Dr. Akram Mohammed</a>
